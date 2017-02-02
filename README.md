@@ -126,7 +126,7 @@ $args = array(
 );
 ```
 
-<h3>timber menu on function.php</h3>`
+<h3>timber menu on function.php</h3>
 
 ```
 add_theme_support('menus');
