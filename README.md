@@ -20,34 +20,36 @@ $templates = array( 'index.twig' );
  {% endfor %}
 ```
 
-<h3> get the connected user </h3>
+<h3> Get the connected user </h3>
 
 ```
-  //index.php
+  // index.php
 
   $context['user'] = new TimberUser();
   
-  //index.twig
+  // index.twig
 
   {{ user.id }} // display the user id
   {{ user.name }} //display the user name
 ```
 
-<h3> /** how to declare variable  with a static value in index.php */ </h3>
-
-<pre>
-  $context['toto'] = je suis toto ;
-</pre>
-
-<h3>/** index.twig */</h3>
+<h3> Static variable </h3>
 
 ```
-  {{toto}}
+  // index.php
+  
+  $context['hello'] =  hello world;
+
+  // index.twig
+  
+  {{hello}}
 ```
 
-<h3>/** add to twig , in file function.php */</h3>
+<h3> Add to twig</h3>
 
 ```
+// function.php
+
 add_filter('get_twig', 'add_to_twig');
 
 function add_to_twig($twig) {
@@ -60,17 +62,17 @@ function my_whatever($text) {
     $text .= ' or whatever';
     return $text;
 }
+
+// index.twig
+
+{{posts.title|whatever}} ==> dracula or whatever
 ```
 
-<h3>/** index.twig */</h3>
+<h3>Find post by the current author</h3>
 
 ```
-{{posts.title|whatever}} ==> je suis le titre or whatever
-```
+// index.php
 
-<h3>/** find post by the current author and display in index.twig */</h3>
-
-```
 $args = array(
     'author'        =>  $current_user->ID,
     'orderby'       =>  'post_date',
@@ -85,23 +87,21 @@ $args = array(
 $context['posts'] = Timber::get_posts( $args );
 ```
 
-<h3>/** find post by categ */</h3>
+<h3>Find post by categ</h3>
 
 ```
+// index.php
+
 $args = array(
-    // Get post type project
     'post_type' => 'post',
-    // Get all posts
     'posts_per_page' => -1,
-    // Gest post by category
-    'category_name'    => '',
-    // Order by post date
+    'category_name'    => 'categorie_name',
     'orderby' => array(
         'date' => 'ASC'
     )
 );
 ```
-<h3>/** all parameters custom post type */</h3>
+<h3>All parameters custom post type</h3>
 
 ```
 $args = array(
@@ -125,9 +125,11 @@ $args = array(
 );
 ```
 
-<h3>timber menu on function.php</h3>
+<h3>Timber menu's</h3>
 
 ```
+// function.php
+
 add_theme_support('menus');
 
 register_nav_menu('headerMenus','Main Menu');
@@ -138,12 +140,10 @@ add_filter('timber_context', function ($context) {
     $context['footerMenus'] = new TimberMenu('footerMenus');
     return $context;
 });
-```
 
-<h3>display menu on index.twig</h3>
+// index .twig
 
-```
-    {%  set_name_of_the_menu = footerMenus %}
+{%  set_name_of_the_menu = footerMenus %}
 
 <nav>
     <ul class="main-nav">
@@ -162,10 +162,12 @@ add_filter('timber_context', function ($context) {
 </nav>
 ```
 
-<h3> change dirname of the templates on function.php </h3>
+<h3> Change dirname of the templates </h3>
 
 ```
-by default the name of the templates dir is 'templates'you can to change the name with this.
+// function.php
+
+By default the name of the templates dir is 'templates'you can to change the name with this.
 
 Timber::$dirname = 'views'; // in the current folder
 
@@ -175,9 +177,11 @@ Timber::$dirname = '/folder/folder2/views'; // in the other folder
 
 ```
 
-<h3> load all settings </h3>
+<h3> Load all settings </h3>
 
 ```
+// function.php
+
 Create a folder settings and put all files in this.
 
 for example assets.php - menu.php - ...
@@ -187,9 +191,12 @@ foreach (glob(__DIR__ .'/settings{/,/*/}*.php', GLOB_BRACE) as $filename) {
     require_once $filename;
 }
 ```
-<h3> load assets </h3>
+
+<h3> Load assets </h3>
 
 ```
+// function.php
+
 call_user_func(function() {
     $cssDir = get_stylesheet_directory_uri() . '/stylesheets';
     $jsDir = get_stylesheet_directory_uri() . '/scripts';
