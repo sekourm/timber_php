@@ -2,7 +2,7 @@
 
 This is an example for use initialize timber in a file
 
-<h3> index.php </h3>
+<h3> /** index.php */ </h3>
 
 <pre>
 $context = Timber::get_context();
@@ -10,7 +10,7 @@ $context['posts'] = Timber::get_posts();
 $templates = array( 'index.twig' );
 </pre>
 
-/** index.twig **/
+<h3> /** index.twig */ </h3>
 
 ```
 {% for post in posts %}
@@ -22,31 +22,31 @@ $templates = array( 'index.twig' );
  {% endfor %}
 ```
 
-/** get the connected user **/
+<h3> /** get the connected user in index.php */ </h3>
 
 <pre>
   $context['users'] = new TimberUser();
 </pre>
 
-/** index.twig **/
+<h3> /** get the connected user in index.twig */ </h3>
 
 ```
   {{ users.id }}
 ```
 
-/** how to declare variable  with a static value **/
+<h3> /** how to declare variable  with a static value in index.php */ </h3>
 
 <pre>
   $context['toto'] = je suis toto ;
 </pre>
 
-/** index.twig **/
+<h3>/** index.twig */</h3>
 
 ```
   {{toto}}
 ```
 
-/** add to twig , in file function.php **/
+<h3>/** add to twig , in file function.php */</h3>
 
 ```
 add_filter('get_twig', 'add_to_twig');
@@ -63,13 +63,13 @@ function my_whatever($text) {
 }
 ```
 
-/** index.twig **/
+<h3>/** index.twig */</h3>
 
 ```
 {{posts.title|whatever}} ==> je suis le titre or whatever
 ```
 
-/** find post by the current author and display to index.twig **/
+<h3>/** find post by the current author and display in index.twig */</h3>
 
 ```
 $args = array(
