@@ -20,16 +20,17 @@ $templates = array( 'index.twig' );
  {% endfor %}
 ```
 
-<h3> /** get the connected user in index.php */ </h3>
-
-<pre>
-  $context['users'] = new TimberUser();
-</pre>
-
-<h3> /** get the connected user in index.twig */ </h3>
+<h3> get the connected user </h3>
 
 ```
-  {{ users.id }}
+  //index.php
+
+  $context['user'] = new TimberUser();
+  
+  //index.twig
+
+  {{ user.id }} // display the user id
+  {{ user.name }} //display the user name
 ```
 
 <h3> /** how to declare variable  with a static value in index.php */ </h3>
