@@ -30,6 +30,15 @@ $templates = array( 'index.twig' );
  
 ```
 
+<h3>debug post</h3>
+
+```
+ // index.php
+
+{{dump(post)}}
+```
+
+
 <h3> Get the connected user </h3>
 
 ```
