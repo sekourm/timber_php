@@ -1,18 +1,16 @@
 # timber_php ====> https://github.com/timber
 
-This is an example for use initialize timber in a file
+<h3> Initialize timber</h3>
 
-<h3> /** index.php */ </h3>
+```
+// index.php
 
-<pre>
 $context = Timber::get_context();
 $context['posts'] = Timber::get_posts();
 $templates = array( 'index.twig' );
-</pre>
 
-<h3> /** index.twig */ </h3>
+// index.twig
 
-```
 {% for post in posts %}
   <h2 class="h2"><a href="{{post.link}}">{{post.title}}</a></h2>
   <p>{{post.get_preview(25)}}</p>
@@ -161,4 +159,51 @@ add_filter('timber_context', function ($context) {
         {% endfor %}
     </ul>
 </nav>
+```
+
+<h3> change dirname of the templates on function.php </h3>
+
+```
+by default the name of the templates dir is 'templates'you can to change the name with this.
+
+Timber::$dirname = 'views'; // in the current folder
+
+or 
+
+Timber::$dirname = '/folder/folder2/views'; // in the other folder
+
+```
+
+<h3> load all settings </h3>
+
+```
+Create a folder settings and put all files in this.
+
+for example assets.php - menu.php - ...
+
+// Load the settings.
+foreach (glob(__DIR__ .'/settings{/,/*/}*.php', GLOB_BRACE) as $filename) {
+    require_once $filename;
+}
+```
+<h3> load assets </h3>
+
+```
+call_user_func(function() {
+    $cssDir = get_stylesheet_directory_uri() . '/stylesheets';
+    $jsDir = get_stylesheet_directory_uri() . '/scripts';
+
+    // front
+    add_action('wp_enqueue_scripts', function() use ($cssDir, $jsDir) {
+        // Override the jQuery library
+        wp_deregister_script('jquery');
+        wp_register_script('jquery', $jsDir .'/vendors/jquery.js');
+
+        // Stylesheets
+        wp_enqueue_style('ilets-style', $cssDir . '/dist/main.css');
+
+        // Scripts
+        wp_enqueue_script('ilets-script', $jsDir . '/script.js',  array('jquery'));
+    });
+});
 ```
