@@ -45,3 +45,26 @@ $templates = array( 'index.twig' );
 ```
   {{toto}}
 ```
+
+/** add to twig , in file function.php **/
+
+```
+add_filter('get_twig', 'add_to_twig');
+
+function add_to_twig($twig) {
+    $twig->addExtension(new Twig_Extension_StringLoader());
+    $twig->addFilter(new Twig_SimpleFilter('whatever', 'my_whatever'));
+    return $twig;
+}
+
+function my_whatever($text) {
+    $text .= ' or whatever';
+    return $text;
+}
+```
+
+/** index.twig **/
+
+```
+{{posts.title|whatever}} ==> je suis le titre or whatever
+```
