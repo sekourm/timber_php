@@ -1,6 +1,6 @@
 # timber_php
 
-this is an example for use initialize timber in a file
+This is an example for use initialize timber in a file
 
 /** index.php **/
 
