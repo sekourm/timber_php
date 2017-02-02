@@ -4,7 +4,7 @@
 
 ```
 
-//Before Activate the plugin 
+// Before Activate the plugin 
 
 // function.php
 
