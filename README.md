@@ -125,3 +125,40 @@ $args = array(
 	'suppress_filters' => true 
 );
 ```
+
+<h3>timber menu on function.php</h3>`
+
+```
+add_theme_support('menus');
+
+register_nav_menu('headerMenus','Main Menu');
+register_nav_menu('footerMenus','Main Footer');
+
+add_filter('timber_context', function ($context) {
+    $context['headerMenus'] = new TimberMenu('headerMenus');
+    $context['footerMenus'] = new TimberMenu('footerMenus');
+    return $context;
+});
+```
+
+<h3>display menu on index.twig</h3>
+
+```
+    {%  set_name_of_the_menu = footerMenus %}
+
+<nav>
+    <ul class="main-nav">
+        {% for item in set_name_of_the_menu.get_items %}
+            <li class="nav-main-item {{item.classes | join(' ')}}"><a class="nav-main-link" href="{{item.get_link}}">{{item.title}}</a>
+                {% if item.get_children %}
+                    <ul class="nav-drop">
+                        {% for child in item.get_children %}
+                            <li class="nav-drop-item"><a href="{{child.get_link}}">{{child.title}}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</nav>
+```
