@@ -33,3 +33,15 @@ $templates = array( 'index.twig' );
 ```
   {{ users.id }}
 ```
+
+/** how to declare variable  with a static value **/
+
+<pre>
+  $context['toto'] = je suis toto ;
+</pre>
+
+/** index.twig **/
+
+```
+  {{toto}}
+```
