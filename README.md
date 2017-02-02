@@ -16,9 +16,18 @@ $templates = array( 'index.twig' );
   <p>{{post.get_preview(25)}}</p>
   <p>id auteur post: {{ post.get_author.ID }}</p
   <p>Date de publication: {{ post.date }}</p>
-  <p>{{ post.terms('category') | join(', ') }}</p>
   <p>Auteur: {{ post.author}}</p>
  {% endfor %}
+ 
+ // multiple categories 
+ 
+   <p>{{ post.terms('category') | join(', ') }}</p>
+   
+ // single categories 
+ 
+ <p>{{ post.category }}</p>
+ <p>{{ post.category.id }}</p>
+ 
 ```
 
 <h3> Get the connected user </h3>
