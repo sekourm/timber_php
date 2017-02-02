@@ -86,3 +86,42 @@ $args = array(
 $context['posts'] = Timber::get_posts( $args );
 ```
 
+<h3>/** find post by categ */</h3>
+
+```
+$args = array(
+    // Get post type project
+    'post_type' => 'post',
+    // Get all posts
+    'posts_per_page' => -1,
+    // Gest post by category
+    'category_name'    => '',
+    // Order by post date
+    'orderby' => array(
+        'date' => 'ASC'
+    )
+);
+```
+<h3>/** all parameters custom post type */</h3>
+
+```
+$args = array(
+	'posts_per_page'   => 5,
+	'offset'           => 0,
+	'category'         => '',
+	'category_name'    => '',
+	'orderby'          => 'date',
+	'order'            => 'DESC',
+	'include'          => '',
+	'exclude'          => '',
+	'meta_key'         => '',
+	'meta_value'       => '',
+	'post_type'        => 'post',
+	'post_mime_type'   => '',
+	'post_parent'      => '',
+	'author'	   => '',
+	'author_name'	   => '',
+	'post_status'      => 'publish',
+	'suppress_filters' => true 
+);
+```
