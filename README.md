@@ -2,7 +2,7 @@
 
 This is an example for use initialize timber in a file
 
-<h1> In index.php </h1>
+<h3> index.php </h3>
 
 <pre>
 $context = Timber::get_context();
