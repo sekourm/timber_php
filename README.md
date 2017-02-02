@@ -68,3 +68,21 @@ function my_whatever($text) {
 ```
 {{posts.title|whatever}} ==> je suis le titre or whatever
 ```
+
+/** find post by the current author and display to index.twig **/
+
+```
+$args = array(
+    'author'        =>  $current_user->ID,
+    'orderby'       =>  'post_date',
+    'order'         =>  'DESC',
+    'posts_per_page' => -1
+);
+
+// 'posts_per_page' => -1 for all posts
+
+// 'posts_per_page' => 7 for7 posts
+
+$context['posts'] = Timber::get_posts( $args );
+```
+
