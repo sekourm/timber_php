@@ -16,6 +16,7 @@ $templates = array( 'index.twig' );
   <p>{{post.get_preview(25)}}</p>
   <p>id auteur post: {{ post.get_author.ID }}</p
   <p>Date de publication: {{ post.date }}</p>
+  <p>{{ post.terms('category') | join(', ') }}</p>
   <p>Auteur: {{ post.author}}</p>
  {% endfor %}
 ```
