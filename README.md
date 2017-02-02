@@ -1,5 +1,26 @@
 # timber_php ====> https://github.com/timber
 
+<h3>FIRST STAPE !!!!</h3>
+
+```
+
+//Before Activate the plugin 
+
+// function.php
+
+if ( ! class_exists( 'Timber' ) ) {
+    add_action( 'admin_notices', function() {
+        echo '<div class="error"><p> Veuillez activer l\'extension Timber, cette extension est obligatoire pour le fonctionnement de votre site !</p></div>';
+    });
+
+    add_filter('template_include', function($template) {
+        return get_stylesheet_directory() . '/views/no-timber.twig';
+    });
+
+    return;
+}
+```
+
 <h3> Initialize timber</h3>
 
 ```
