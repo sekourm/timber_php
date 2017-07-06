@@ -293,6 +293,20 @@ add_action('save_post', function($post_id) {
 <br>
 <br>
 
+```
+<h3> get the metadata of the post </h3>
 
+```
+
+get_post_meta($value->ID , 'montant', true);
+
+$args = array(
+    'post_type' => 'adhesion-price',
+    'posts_per_page' => -1,
+ );
+
+$post = query_posts( $args );
+
+get_post_meta($post[0]->ID , 'montant', true); 
 
 ```
