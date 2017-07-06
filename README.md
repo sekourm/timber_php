@@ -255,3 +255,44 @@ call_user_func(function() {
     });
 });
 ```
+
+<h3> create metabox </h3>
+
+```
+// function.php
+
+/*
+ * Meta boxes: adhesion-price
+ */
+
+add_action('add_meta_boxes', function() {
+    add_meta_box('adhesion-price-info_box', "Détail de la capsule", function ($post) {
+        Timber::render('admin/metaboxes/adhesion-price.twig', array(
+            'montant' => get_post_meta($post->ID, 'montant', true),
+        ));
+    });
+});
+
+/*
+ * Meta boxes: handlers
+ */
+
+add_action('save_post', function($post_id) {
+    if (get_post_type() == 'adhesion-price') {
+        Utils::handleMetaData($post_id, array(
+            'montant'
+        ));
+    }
+});
+
+// view 
+
+<h4>Montant :</h4>
+<input type="text" name="montant" value="{{ montant }}">
+<br>
+<br>
+<br>
+
+
+
+```
